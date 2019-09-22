@@ -6,8 +6,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn to='/feed' text>Publicações</v-btn>
-        <v-btn to='/net' text>Colegas</v-btn>
-        <v-btn text>*notificações*</v-btn>
+        <v-btn to='/net' text>Empreendedores</v-btn>
         <v-btn text>*foto perfil*</v-btn>
         </v-app-bar>
     </div>
