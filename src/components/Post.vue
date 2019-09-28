@@ -1,7 +1,44 @@
 <template>
 <v-app>
     <v-row justify="center">
-        
+        <v-col cols="6">
+        <v-card>
+            <v-list-item>
+                <v-list-item-avatar size="55" color="grey">
+                    <v-img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                    
+                </v-list-item-content>
+            </v-list-item>
+
+            <v-card-text>
+            <v-container>
+                <v-row>
+                <v-col cols="12">
+                    <v-textarea
+                        v-model="npost.text"
+                        outlined
+                        required
+                        label="Algo inovador para contar?"
+                        no-resize="true"
+                    ></v-textarea>
+                </v-col>
+
+                <v-col cols="12">
+                    <v-text-field v-model="npost.img" label="Link para a Imagem (opcional)" required></v-text-field>
+                </v-col>
+
+                <v-img v-if="npost.img != ''" :src="npost.img"></v-img>
+                </v-row>
+
+                <v-row justify="end">
+                    <v-btn text>Post</v-btn>
+                </v-row>
+            </v-container>
+            </v-card-text>
+        </v-card>
+        </v-col>
     </v-row>
 
     <v-row v-bind:key="post._id" v-for="post in posts" justify="center">
@@ -19,13 +56,12 @@
                                 v-model="share.coment"
                                 outlined
                                 label="Adicione um comentário"
-                                required
                                 no-resize="true"
                             ></v-textarea>
                         </v-col>
 
                         <v-col>
-                            <v-card color="grey">
+                            <v-card>
                                 <v-card-text>
                                     <span class="text--primary">
                                         {{ share.post.text }}
@@ -45,9 +81,28 @@
             </v-card-actions>
         </v-card>
         </v-dialog>
-        
+
         <v-col cols="6">
             <v-card>
+                <div v-if="post.coment.text != ''">
+                    <v-list-item>
+                        <v-list-item-avatar size="55" color="grey">
+                            <v-img :src="post.coment.author.img"></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                            <v-list-item-title>{{ post.coment.author.name }}</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+
+                    <v-card-text>
+                        <span class="text--primary">
+                            {{ post.coment.text }}
+                        </span>
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+                </div>
+
                 <v-list-item>
                     <v-list-item-avatar size="55" color="grey">
                         <v-img :src="post.author.img"></v-img>
@@ -93,6 +148,7 @@ export default {
     },
     data: () => {
         return {
+            npost: {text: '', img: ''},
             post: {},
             share: {post: {}, coment: ''},
             dialog: false,

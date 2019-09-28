@@ -1,20 +1,26 @@
 <template>
     <v-app>
+        <Menu/>
         <v-container>
-            <Menu/>
-            <Post/>
+            <v-row justify="center">
+                <v-col cols="6">
+                <v-card>
+                    <v-card-title>Aqui ficarão as ideias</v-card-title>
+                    
+                    <v-card-text>Descrição</v-card-text>
+                </v-card>
+                </v-col>
+            </v-row>
         </v-container>
     </v-app>
 </template>
 
 <script>
 import Menu from '@/components/Menu.vue'
-import Post from '@/components/Post'
 import { mapGetters } from "vuex"
 
 export default {
     components: {
-        Post,
         Menu
     },
     computed: {
@@ -22,7 +28,7 @@ export default {
     },
     created: function() {
         if (!this.getIsLogged) {
-            return this.$router.push("/");
+        return this.$router.push("/");
         }
     },
 }
